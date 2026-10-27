@@ -201,3 +201,8 @@ body{overflow-x:clip}
 .about-photo .about-stamp b{font-size:20px}
 @media(max-width:900px){.about-photo .about-stamp{width:100px;height:100px;right:-20px}}
 @media(max-width:680px){.about-photo{width:min(300px,82%);margin:10px auto 20px}.about-photo .about-stamp{right:-18px;bottom:-24px;width:96px;height:96px}}
+
+/* Hero actions with résumé button */
+.hero-actions{flex-wrap:wrap;gap:14px 22px}
+.hero-actions .button-outline{order:1}
+.hero-actions .text-link{order:2}

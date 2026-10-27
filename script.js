@@ -263,3 +263,20 @@ if (canvas && canvas.getContext) {
     }).observe(canvas);
   }
 }
+
+// Résumé links: until resume.pdf is uploaded, turn them into an email request instead of a broken download.
+const resumeLinks = document.querySelectorAll("[data-resume]");
+if (resumeLinks.length) {
+  const useRequestFallback = () => {
+    resumeLinks.forEach((link) => {
+      link.removeAttribute("download");
+      link.href = "mailto:sreedher002@gmail.com?subject=" + encodeURIComponent("Résumé request") + "&body=" + encodeURIComponent("Hi Sreedher, could you please share your résumé?");
+      link.firstChild.textContent = "Request résumé ";
+      const icon = link.querySelector("span");
+      if (icon) icon.textContent = "↗";
+    });
+  };
+  fetch("resume.pdf", { method: "HEAD", cache: "no-store" })
+    .then((response) => { if (!response.ok) useRequestFallback(); })
+    .catch(useRequestFallback);
+}
